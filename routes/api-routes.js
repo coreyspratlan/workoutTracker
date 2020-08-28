@@ -7,4 +7,13 @@ module.exports = function (app) {
       res.json(workout);
     });
   });
+  app.post("/api/workouts", ({ body }, res) => {
+    Exercise.create(body)
+      .then(dbExercise => {
+        res.json(dbExercise);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
 }
